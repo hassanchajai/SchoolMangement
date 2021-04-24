@@ -3,10 +3,10 @@
 abstract class Model{
     private static  $_bdd;
     private static function setBdd(){
-        self::$_bdd=new PDO("mysql:host=localhost;","schoolmanagement","hassan","hassan1234");
+        self::$_bdd=new PDO("mysql:host=localhost;dbname=schoolmanagement","hassan","hassan1234");
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }
-    private function getbdd(){
+    protected function getbdd(){
         if(self::$_bdd == null){
             $this->setBdd();
             return self::$_bdd;

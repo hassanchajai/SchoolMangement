@@ -10,7 +10,7 @@
 	<meta name="keywords" content="">
 
 
-	
+
 
 	<title>Sign In </title>
 
@@ -35,23 +35,23 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									
-									<form>
+
+									<form action="authentification&status=signin" method="POST">
 										<div class="mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+											<label class="form-label">Email or Username</label>
+											<input class="form-control form-control-lg" type="text" name="uid" placeholder="Enter your email" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
-						
+											<input class="form-control form-control-lg" type="password" name="pwd" placeholder="Enter your password" />
+
 										</div>
-										<div>
-				
+										<div class="text-danger my-3">
+											<?php echo isset($_GET["error"]) ? $_GET["error"] : "" ?>
 										</div>
-										<div class="text-center mt-5">
+										<div class="text-center ">
 											<!-- <a href="" class="btn btn-lg btn-primary ">Sign in</a> -->
-											 <button type="submit" class="btn btn-lg btn-primary w-100  ">Sign in</button> 
+											<button type="submit" class="btn btn-lg btn-primary w-100  ">Sign in</button>
 										</div>
 									</form>
 								</div>
