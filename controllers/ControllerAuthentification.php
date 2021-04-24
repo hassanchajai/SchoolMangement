@@ -32,7 +32,7 @@ class ControllerAuthentification
 
         $uid = $_POST["uid"];
         $pwd = $_POST["pwd"];
-        $user = new User([]);
+        $user = new UserManager;
         if ($user->signin($uid, $pwd)) {
             header("location: dashboard");
         } else {
@@ -41,7 +41,7 @@ class ControllerAuthentification
     }
     private function signout()
     {
-        $user = new User([]);
+        $user = new UserManager;
         $user->signout();
         header("location: authentification");
     }
