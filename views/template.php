@@ -40,6 +40,11 @@
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
 						</a>
 					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="Salle">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Salle</span>
+						</a>
+					</li>
 
 			
 			

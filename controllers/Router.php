@@ -7,39 +7,33 @@ class Router
     public function ReqRoute()
     {
         try {
-            
-            spl_autoload_register(function($class){
-                require_once "models/".$class.".php";
-               
+
+            spl_autoload_register(function ($class) {
+                require_once "models/" . $class . ".php";
             });
-            $url="";
 
-            if(isset($_GET["url"])){
-                
-                $url=explode("/",filter_var($_GET["url"],FILTER_SANITIZE_URL));
-                $controller=ucfirst((strtolower($url[0])));
-                $controllerClass="Controller".$controller;
-                $controllerFile="controllers/".$controllerClass.".php";
-                if(file_exists($controllerFile)){
+
+            $url = "";
+
+            if (isset($_GET["url"])) {
+
+                $url = explode("/", filter_var($_GET["url"], FILTER_SANITIZE_URL));
+                $controller = ucfirst((strtolower($url[0])));
+                $controllerClass = "Controller" . $controller;
+                $controllerFile = "controllers/" . $controllerClass . ".php";
+                if (file_exists($controllerFile)) {
                     require_once $controllerFile;
-                    $this->ctrl=new $controllerClass($url);
-                }
-                else{
-                   
+                    $this->ctrl = new $controllerClass($url);
+                } else {
+
                     require_once "controllers/ControllerAccueil.php";
-                    $this->ctrl=new ControllerAccueil();
-                   
+                    $this->ctrl = new ControllerAccueil();
                 }
-            }
-            else{
-                
+            } else {
+
                 require_once "controllers/ControllerAccueil.php";
-                $this->ctrl=new ControllerAccueil();
-               
+                $this->ctrl = new ControllerAccueil();
             }
-
-
-
         } catch (Exception $th) {
             $error = $th->getMessage();
             echo $error;

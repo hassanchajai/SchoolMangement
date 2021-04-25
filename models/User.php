@@ -5,8 +5,8 @@ class User
     private $id;
     private $Email;
     private $Uid;
-    private $image;
-    private $role;
+    private $Image;
+    private $Role;
 
     public function __construct(array $data)
     {
@@ -44,6 +44,18 @@ class User
         if (!empty($value)) {
             $this->Role = $value;
         }
+    }
+    public function getEmail(){
+        return $this->Email;
+    }
+    public function getUid(){
+        return $this->Uid;
+    }
+    public function getRole(){
+        return $this->Role;
+    }
+    public function getImage(){
+        return $this->Image;
     }
   
  

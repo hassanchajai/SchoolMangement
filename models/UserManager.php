@@ -5,7 +5,18 @@ class UserManager extends Model{
     public function getallusers(){
         return $this->getAll("users","User");
     }
+    public function getsingleuser($id){
+        return $this->getOne("users","User",$id);
+    }
+    public function createone(){
+        //  TODO not completed yet 
+        extract($_POST);
+        $conn = $this->getbdd();
+        $stmt = $conn->prepare("INSERT INTO `users` () VALUES (?,?,?,?)");
+        $stmt->bindParam(1,$email);
 
+
+    }
       //  signIn Functions
       protected function uidExist(string $Email=""){
         if(!empty($Email)){
