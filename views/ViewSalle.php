@@ -2,7 +2,7 @@
 <h1 class="font-weight-bold">
 List of Salle
 </h1>
-<a class="btn btn-primary p-2">Add Salle</a>
+<a class="btn btn-primary p-2" href="salle&status=new">Add Salle</a>
 </div>
 <div class="data">
 <table class="table caption-top">
@@ -21,7 +21,7 @@ List of Salle
       <td><?= $value->getLibelle() ?></td>
       <td><?= $value->getCapacity() ?> Person</td>
       <td class="">
-      <a class="btn btn-warning">Edit</a>
+      <a class="btn btn-warning" href="salle&status=edit&id=<?= $value->getId() ?>">Edit</a>
       <a class="btn btn-danger ml-2" href="salle&status=delete&id=<?= $value->getId() ?>">Delete</a>
       </td>
     </tr>

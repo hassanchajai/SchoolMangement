@@ -13,10 +13,8 @@ class SalleManager extends Model{
         $stmt=$conn->prepare("INSERT INTO `salle`( `libelle`, `capacity`) VALUES (?,?)");
         $stmt->bindParam(1,$libelle,PDO::PARAM_STR);
         $stmt->bindParam(2,$capacity,PDO::PARAM_INT);
-        if($stmt->execute()){
-            return true;
-        }
-        return false;
+        $stmt->execute();
+       
     }
     public function updateSalle(){
         extract($_POST);
@@ -25,10 +23,8 @@ class SalleManager extends Model{
         $stmt->bindParam(1,$libelle,PDO::PARAM_STR);
         $stmt->bindParam(2,$capacity,PDO::PARAM_INT);
         $stmt->bindParam(3,$id,PDO::PARAM_INT);
-        if($stmt->execute()){
-            return true;
-        }
-        return false;
+        $stmt->execute();
+       
     }
     public function DeleteSalle($id){
         $conn=$this->getbdd();

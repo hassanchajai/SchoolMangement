@@ -27,11 +27,13 @@ abstract class Model{
     protected function getOne($table,$obj,$id){
         $this->getbdd();
         $req=self::$_bdd->prepare("SELECT * FROM $table WHERE ID = ?");
-        $req->execute(array("id"=>$id));
+        $req->bindParam(1,$id,PDO::PARAM_INT);
+        $req->execute();
         $var=[];
-        while($row=PDO::FETCH_ASSOC){
+        while($row=$req->fetch(PDO::FETCH_ASSOC)){
             $var=new $obj($row);
         }
+        return $var;
     }
     protected function createOne(){
 
