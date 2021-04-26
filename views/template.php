@@ -46,7 +46,12 @@
 						</a>
 					</li>
 
-			
+					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="group" ? "active" :"" ?>">
+						<a class="sidebar-link" href="group">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Group</span>
+						</a>
+					</li>
+
 			
 			
 

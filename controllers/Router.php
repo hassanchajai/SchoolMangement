@@ -1,6 +1,5 @@
 <?php
 require_once 'views/view.php';
-
 class Router
 {
 
