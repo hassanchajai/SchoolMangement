@@ -34,12 +34,6 @@
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 						</a>
 					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.html">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-						</a>
-					</li>
 					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="salle" ? "active" :"" ?>">
 						<a class="sidebar-link" href="Salle">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Salle</span>
@@ -49,6 +43,11 @@
 					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="group" ? "active" :"" ?>">
 						<a class="sidebar-link" href="group">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Group</span>
+						</a>
+					</li>
+					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="ens" ? "active" :"" ?>">
+						<a class="sidebar-link" href="ens">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Ens</span>
 						</a>
 					</li>
 
