@@ -9,11 +9,12 @@ class ControllerEns
 
             if (isset($_GET["status"])  && isset($_GET["id"]) && $_GET["status"] == "delete") {
                 $id = $_GET["id"];
-                // $this->delete($id);
+                $iduser = $_GET["iduser"];
+                $this->delete($id,$iduser);
             } else if (isset($_GET["status"])  && $_GET["status"] == "new") {
-                 $this->create();
+                $this->create();
             } else if (isset($_GET["status"])  && $_GET["status"] == "store") {
-                // $this->store();
+                $this->store();
             } else if (isset($_GET["status"]) && isset($_GET["id"])  && $_GET["status"] == "edit") {
                 $id = $_GET["id"];
                 // $this->edit($id);
@@ -45,22 +46,29 @@ class ControllerEns
     //     $this->view = new View("AddMatiere");
     //     $this->view->generate(["matiere" => $matiere->getOneMatiere($id)]);
     // }
-    // public function store()
-    // {
-    //     $matiere = new MatiereManager;
-    //     $matiere->createMatiere();
-    //     header("location: matiere");
-    // }
+    public function store()
+    {
+        $ens = new EnsManager;
+        $user = new UserManager;
+        $id = $user->createone("ens");
+        $ens->create($id);
+        header("location: ens");
+    }
 
-    // public function delete($id)
-    // {
-    //     $matiere = new MatiereManager;
-    //     $matiere->DeleteMatiere($id);
-    //     header("location: matiere");
-    // }
+    public function delete($id,$iduser)
+    {
+        $user = new UserManager;
+        $ens = new EnsManager;
+       $ens->Delete($id); 
+       $user->Delete($iduser);
+        
+        header("location: ens");
+    }
     public function create()
     {
+        $matiere = new MatiereManager;
+        $group = new GroupManager;
         $this->view = new View("AddEns");
-        $this->view->generate([]);
+        $this->view->generate(["matiere" => $matiere->getAllGMatiere(), "grps" => $group->getAllGroups()]);
     }
 }

@@ -7,6 +7,10 @@ abstract class Model
     {
         self::$_bdd = new PDO("mysql:host=localhost;dbname=schoolmanagement", "hassan", "hassan1234");
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // self::$_bdd->lastInsertId();
+    }
+    protected function close(){
+        self::$_bdd=null;
     }
     protected function getbdd()
     {

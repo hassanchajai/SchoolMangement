@@ -19,13 +19,14 @@ List of Enseignants
   <?php  foreach ($ens as $key => $value) : ?>
 
     <tr>
+
       <td><?= $value->getNom() . " ".$value->getPrenom() ?></td>
       <td><?= $value->getGroup()  ?></td>
       <td><?= $value->getMatiere()  ?></td>
       
       <td class="">
-      <a class="btn btn-warning" href="Matiere&status=edit&id=<?= $value->getId() ?>">Edit</a>
-      <a class="btn btn-danger ml-2" href="Matiere&status=delete&id=<?= $value->getId() ?>">Delete</a>
+      <a class="btn btn-warning" href="ens&status=edit&id=<?= $value->getId() ?>">Edit</a>
+      <a class="btn btn-danger ml-2" href="ens&status=delete&id=<?= $value->getId() ?>&iduser=<?= $value->getIdUser() ?>">Delete</a>
       </td>
     </tr>
  <?php endforeach; ?>
