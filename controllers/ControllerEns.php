@@ -10,14 +10,14 @@ class ControllerEns
             if (isset($_GET["status"])  && isset($_GET["id"]) && $_GET["status"] == "delete") {
                 $id = $_GET["id"];
                 $iduser = $_GET["iduser"];
-                $this->delete($id,$iduser);
+                $this->delete($id, $iduser);
             } else if (isset($_GET["status"])  && $_GET["status"] == "new") {
                 $this->create();
             } else if (isset($_GET["status"])  && $_GET["status"] == "store") {
                 $this->store();
             } else if (isset($_GET["status"]) && isset($_GET["id"])  && $_GET["status"] == "edit") {
                 $id = $_GET["id"];
-                // $this->edit($id);
+                $this->edit($id);
             } else if (isset($_GET["status"]) &&  $_GET["status"] == "update") {
                 // $this->update();
             } else {
@@ -39,13 +39,22 @@ class ControllerEns
     //     $matiere->updateMatiere();
     //     header("location: matiere");
     // }
-    // public function edit($id)
-    // {
+    public function edit($id)
+    {
 
-    //     $matiere = new MatiereManager;
-    //     $this->view = new View("AddMatiere");
-    //     $this->view->generate(["matiere" => $matiere->getOneMatiere($id)]);
-    // }
+      $ensmanager=new EnsManager;
+      $usermanager=new UserManager;
+        
+      $ens=$ensmanager->getOneEns($id);
+      $user=$usermanager->getsingleuser($ens->getIdUser());
+      print_r($ens);
+      die();
+      $this->view=new View("viewAddEns");
+      $this->view->generate(["ens"=>$ens,"user"=>$user]);
+
+
+      
+    }
     public function store()
     {
         $ens = new EnsManager;
@@ -55,13 +64,13 @@ class ControllerEns
         header("location: ens");
     }
 
-    public function delete($id,$iduser)
+    public function delete($id, $iduser)
     {
         $user = new UserManager;
         $ens = new EnsManager;
-       $ens->Delete($id); 
-       $user->Delete($iduser);
-        
+        $ens->Delete($id);
+        $user->Delete($iduser);
+
         header("location: ens");
     }
     public function create()
