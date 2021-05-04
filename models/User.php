@@ -7,17 +7,20 @@ class User
     private $Uid;
     private $Image;
     private $Role;
+    private $pwd;
 
     public function __construct(array $data)
     {
+       
         $this->hydrate($data);
     }
     public function hydrate($data)
-    {
+    { 
         foreach ($data as $key => $value) {
+           
             $method = "set" . ucfirst($key);
             if (method_exists($this, $method)) {
-                $method($value);
+                $this->$method($value);
             }
         }
     }
@@ -25,6 +28,12 @@ class User
     {
         if (!empty($value)) {
             $this->Image = $value;
+        }
+    }
+    public function setPwd($value)
+    {
+        if (!empty($value)) {
+            $this->pwd = $value;
         }
     }
     public function setEmail($value)
@@ -56,6 +65,9 @@ class User
     }
     public function getImage(){
         return $this->Image;
+    }
+    public function getPassword(){
+        return $this->pwd;
     }
   
  

@@ -44,13 +44,15 @@ class ControllerEns
 
       $ensmanager=new EnsManager;
       $usermanager=new UserManager;
-        
+      $matiere = new MatiereManager;
+      $group = new GroupManager;  
+
+
       $ens=$ensmanager->getOneEns($id);
       $user=$usermanager->getsingleuser($ens->getIdUser());
-      print_r($ens);
-      die();
-      $this->view=new View("viewAddEns");
-      $this->view->generate(["ens"=>$ens,"user"=>$user]);
+      
+      $this->view=new View("AddEns");
+      $this->view->generate(["ens"=>$ens,"user"=>$user,"matiere" => $matiere->getAllGMatiere(), "grps" => $group->getAllGroups()]);
 
 
       

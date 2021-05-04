@@ -24,7 +24,7 @@ abstract class Model
         $this->getbdd();
         $var = [];
         $sql = "SELECT * FROM $table ORDER BY id DESC";
-        if ($obj == "Ens") $sql = "SELECT `idEns`,`nom`,`prenom`,`idUser`,`idMatiere`,`idgroup`,m.libelle as matiere,g.libelle as `group` 
+        if ($obj == "Ens") $sql = "SELECT `idEns`,u.uid,`nom`,`prenom`,`idUser`,`idMatiere`,`idgroup`,m.libelle as matiere,g.libelle as `group` 
          FROM `enseignants` as e 
          JOIN users as u ON u.id= e.idUser 
          JOIN matiere as m on m.id=e.idmatiere 
@@ -41,7 +41,7 @@ abstract class Model
     {
         $this->getbdd();
         $sql = "SELECT * FROM $table WHERE ID = ?";
-        if ($obj == "Ens") $sql = "SELECT `idEns`,`nom`,`prenom`,`idUser`,`idMatiere`,`idgroup`,m.libelle as matiere,g.libelle as `group` 
+        if ($obj == "Ens") $sql = "SELECT `idEns`,`nom`,`prenom`,`idUser`,`idMatiere`,`idgroup`,m.libelle as matiere,g.libelle as `group`
         FROM `enseignants` as e 
         JOIN users as u ON u.id= e.idUser 
         JOIN matiere as m on m.id=e.idmatiere 
@@ -50,9 +50,11 @@ abstract class Model
         $req->bindParam(1, $id, PDO::PARAM_INT);
         $req->execute();
         $var = [];
+        // print_r($req->fetchAll(PDO::FETCH_ASSOC));
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
             $var = new $obj($row);
         }
+       
         return $var;
     }
    

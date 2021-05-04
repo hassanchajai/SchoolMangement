@@ -50,19 +50,12 @@
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Ens</span>
 						</a>
 					</li>
-
-			
-			
-
-					<li class="sidebar-item">
-						<a href="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
+					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="Resevation" ? "active" :"" ?>">
+						<a class="sidebar-link" href="ens">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Cours</span>
 						</a>
-						<ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-						</ul>
 					</li>
+
 
 
 				</ul>
