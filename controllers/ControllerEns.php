@@ -33,12 +33,15 @@ class ControllerEns
         $this->view = new View("Ens");
         $this->view->generate(["ens" => $ens->getAllEns()]);
     }
-    // public function update()
-    // {
-    //     $matiere=new MatiereManager;
-    //     $matiere->updateMatiere();
-    //     header("location: matiere");
-    // }
+    public function update($id)
+    {
+// print_r($_POST);
+        $user = new UserManager;
+        $ens = new EnsManager;
+        $ens->update($id);
+        // $user->update($iduser);
+        // header("location: ens");
+    }
     public function edit($id)
     {
 

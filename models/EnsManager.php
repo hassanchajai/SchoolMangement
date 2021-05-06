@@ -33,12 +33,19 @@ class EnsManager extends Model
     public function update()
     {
         extract($_POST);
-        $conn = $this->getbdd();
-        $stmt = $conn->prepare("UPDATE `groups` SET `libelle`=?, `effectif`=? WHERE id=?");
-        $stmt->bindParam(1, $libelle, PDO::PARAM_STR);
-        $stmt->bindParam(2, $effectif, PDO::PARAM_STR);
-        $stmt->bindParam(3, $id, PDO::PARAM_INT);
-        $stmt->execute();
+        try {
+            $conn = $this->getbdd();
+            $stmt = $conn->prepare("UPDATE `enseignants` SET `nom`=?, `prenom`=?, `idMatiere`=?, `idgroup`=? WHERE id=?");
+            $stmt->bindParam(1, $nom, PDO::PARAM_STR);
+            $stmt->bindParam(2, $prenom, PDO::PARAM_STR);
+            $stmt->bindParam(3, $idm, PDO::PARAM_INT);
+            $stmt->bindParam(4, $idg, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->close();
+        } catch (PDOException $e) {
+            echo "message :" . $e->getMessage();
+            die();
+        }
     }
     public function Delete($id)
     {

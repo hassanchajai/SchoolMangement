@@ -50,7 +50,7 @@
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Ens</span>
 						</a>
 					</li>
-					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="Resevation" ? "active" :"" ?>">
+					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="cours" ? "active" :"" ?>">
 						<a class="sidebar-link" href="ens">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Cours</span>
 						</a>

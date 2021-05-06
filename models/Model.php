@@ -37,6 +37,7 @@ abstract class Model
         $req->closeCursor();
         return $var;
     }
+    
     protected function getOne($table, $obj, $id)
     {
         $this->getbdd();

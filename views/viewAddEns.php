@@ -66,20 +66,29 @@
     <!--  -->
     <label for="Group" class="mb-2">Group :</label>
     <select name="idgroup" class="form-control mb-2">
-        <option  disabled value="0" selected>select group</option>
         <?php 
         foreach ($grps as $key => $value) {
-            echo "<option value='".$value->getId()."'>".$value->getLibelle()."</option>";
+            if($ens->getIdGroup() == $value->getId()){
+                echo "<option value='".$value->getId()."' selected>".$value->getLibelle()."</option>";
+            }
+            else{
+                echo "<option value='".$value->getId()."'>".$value->getLibelle()."</option>";
+            }
         }
         ?>
     </select>
     <!--  -->
     <label for="matiere" class="mb-2">Matiere :</label>
     <select name="idmatiere" class="form-control mb-2">
-        <option disabled value="0" selected>select matiere</option>
+        
         <?php 
         foreach ($matiere as $key => $value) {
-            echo "<option value='".$value->getId()."'>".$value->getLibelle()."</option>";
+           if($ens->getIdMatiere() == $value->getId()){
+            echo "<option  value='".$value->getId()."' selected>".$value->getLibelle()."</option>";
+           }else{
+            echo "<option  value='".$value->getId()."'>".$value->getLibelle()."</option>";
+           }
+            
         }
         ?>
     </select>
