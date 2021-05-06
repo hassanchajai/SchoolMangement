@@ -19,7 +19,7 @@ class ControllerEns
                 $id = $_GET["id"];
                 $this->edit($id);
             } else if (isset($_GET["status"]) &&  $_GET["status"] == "update") {
-                // $this->update();
+                $this->update();
             } else {
                 $this->index();
             }
@@ -33,14 +33,14 @@ class ControllerEns
         $this->view = new View("Ens");
         $this->view->generate(["ens" => $ens->getAllEns()]);
     }
-    public function update($id)
+    public function update()
     {
 // print_r($_POST);
         $user = new UserManager;
         $ens = new EnsManager;
-        $ens->update($id);
-        // $user->update($iduser);
-        // header("location: ens");
+        $ens->update();
+        $user->update();
+        header("location: ens");
     }
     public function edit($id)
     {

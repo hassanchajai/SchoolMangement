@@ -60,6 +60,7 @@
     <h4 class="mb-3">Enseignant Information :</h4>
     <label for="nom" class="mb-2">Nom :</label>
     <input type="text" class="form-control mb-2" value="<?= $ens->getNom() ?>" name="nom" required />
+    <input type="hidden" class="form-control mb-2" value="<?= $ens->getId() ?>" name="id" required />
     <!--  -->
     <label for="prenom" class="mb-2">Prenom :</label>
     <input type="text" class="form-control mb-2" name="prenom" value="<?= $ens->getPrenom() ?>" required />
@@ -105,7 +106,8 @@
     <label for="pwd" class="mb-2">Password :</label>
     <input type="text" value="<?= $user->getPassword() ?>"  class="form-control mb-2" name="pwd" required />
     <!--  -->
- 
+    <input type="hidden" value="<?= $ens->getIdUser() ?>"   name="iduser"  />
+
     <button type="submit" class="btn btn-primary py-2 px-4 mt-3">
         Submit
     </button>

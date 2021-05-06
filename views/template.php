@@ -51,7 +51,7 @@
 						</a>
 					</li>
 					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="cours" ? "active" :"" ?>">
-						<a class="sidebar-link" href="ens">
+						<a class="sidebar-link" href="cours">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Cours</span>
 						</a>
 					</li>

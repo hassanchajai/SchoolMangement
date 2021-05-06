@@ -35,11 +35,12 @@ class EnsManager extends Model
         extract($_POST);
         try {
             $conn = $this->getbdd();
-            $stmt = $conn->prepare("UPDATE `enseignants` SET `nom`=?, `prenom`=?, `idMatiere`=?, `idgroup`=? WHERE id=?");
+            $stmt = $conn->prepare("UPDATE `enseignants` SET `nom`=?, `prenom`=?, `idMatiere`=?, `idgroup`=? WHERE idEns=?");
             $stmt->bindParam(1, $nom, PDO::PARAM_STR);
             $stmt->bindParam(2, $prenom, PDO::PARAM_STR);
-            $stmt->bindParam(3, $idm, PDO::PARAM_INT);
-            $stmt->bindParam(4, $idg, PDO::PARAM_INT);
+            $stmt->bindParam(3, $idmatiere, PDO::PARAM_INT);
+            $stmt->bindParam(4, $idgroup, PDO::PARAM_INT);
+            $stmt->bindParam(5, $id, PDO::PARAM_INT);
             $stmt->execute();
             $this->close();
         } catch (PDOException $e) {

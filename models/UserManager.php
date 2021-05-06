@@ -60,6 +60,8 @@ class UserManager extends Model
             return false;
         }
     }
+
+
     public function Delete($id){
         $conn=$this->getbdd();
         $stmt=$conn->prepare("DELETE FROM `users` WHERE id=?");
@@ -73,5 +75,15 @@ class UserManager extends Model
     {
         session_unset();
         session_destroy();
+    }
+    public function update(){
+        extract($_POST);
+        $conn = $this->getbdd();
+        $stmt = $conn->prepare("UPDATE  `users` SET uid=?,email=?,pwd=? WHERE id=?");
+        $stmt->bindParam(1, $username, PDO::PARAM_STR);
+        $stmt->bindParam(2, $email, PDO::PARAM_STR);
+        $stmt->bindParam(3, $pwd, PDO::PARAM_STR);
+        $stmt->bindParam(4, $iduser, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
