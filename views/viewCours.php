@@ -8,6 +8,12 @@
   <form class="d-flex justify-content-between">
 
     <input type="date" name="date" id="" class="form-control">
+    <select class="form-control" disabled name="idsalle">
+    <option value="0" disabled selected> 
+    Choose Salle
+    </option>
+      <option value="1">Salle 1</option>
+    </select>
     <select name="dt" disabled class="form-control mr-2">
     <option value="0" disabled selected> 
     Choose date
@@ -25,12 +31,7 @@
         4-6
       </option>
     </select>
-    <select class="form-control" disabled name="idsalle">
-    <option value="0" disabled selected> 
-    Choose Salle
-    </option>
-      <option value="1">Salle 1</option>
-    </select>
+  
     <button type="submit" class="btn btn-info" disabled>
       Submit
     </button>

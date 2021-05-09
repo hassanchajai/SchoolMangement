@@ -27,7 +27,7 @@ class ControllerCours
         
         $data = json_decode(file_get_contents("php://input"));
 
-        $horraire=array("8-10","10-12","2-4","4-6");
+        $horraires=array("8-10","10-12","2-4","4-6");
 
         $courManager=new CoursManager;
 
@@ -35,15 +35,17 @@ class ControllerCours
 
         $dt = $data->dt;
 
-        $cours= $courManager->getHorrarie($dt);
+        $idSalle=$data->idSalle;
 
-        // foreach ($horraire as $cour) {
-        //     if(!in_array($cour,$cours)[{
-        //         $horraireFiltred[]=;
-        //     }
-        // }
+        $cours= $courManager->getHorrarie($dt,$idSalle);
 
-        $response = ["data" => $cours];
+        foreach ($horraires as $horraire) {
+            if(!in_array($horraire,$cours)){
+                $horraireFiltred[]=$horraire;
+           }
+         }
+
+        $response = ["data" => $horraireFiltred];
 
         echo json_encode($response);
     }
