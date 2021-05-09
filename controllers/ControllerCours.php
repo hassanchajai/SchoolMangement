@@ -4,7 +4,7 @@ class ControllerCours
     private $view;
     public function __construct()
     {
-        if ($_GET["status"] == "dates") {
+        if (  isset($_GET["status"]) && $_GET["status"] == "dates") {
             $this->dates();
         } else {
             $this->index();
@@ -24,12 +24,26 @@ class ControllerCours
         header("Access-Control-Allow-Methods: POST");
         header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-
+        
         $data = json_decode(file_get_contents("php://input"));
+
+        $horraire=array("8-10","10-12","2-4","4-6");
+
+        $courManager=new CoursManager;
+
+        $horraireFiltred=array();
 
         $dt = $data->dt;
 
-        $response = ["dt" => $dt];
+        $cours= $courManager->getHorrarie($dt);
+
+        // foreach ($horraire as $cour) {
+        //     if(!in_array($cour,$cours)[{
+        //         $horraireFiltred[]=;
+        //     }
+        // }
+
+        $response = ["data" => $cours];
 
         echo json_encode($response);
     }
