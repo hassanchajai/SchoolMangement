@@ -9,8 +9,20 @@ class EnsManager extends Model
     {
         return $this->getOne("enseignants", "Ens", $id);
     }
+    public function getIdEns($iduser)
+    {  try {
 
-
+        $conn = $this->getbdd();
+        $stmt = $conn->prepare("SELECT idens FROM `enseignants` WHERE iduser = ?");
+        $stmt->bindParam(1, $iduser, PDO::PARAM_STR);
+        $stmt->execute();
+        $ens = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $ens["idens"];
+    } catch (PDOException $e) {
+        echo "message :" . $e->getMessage();
+        die();
+    }
+    }
     public function create($id)
     {
         extract($_POST);

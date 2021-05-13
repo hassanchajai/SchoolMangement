@@ -23,5 +23,21 @@ class CoursManager extends Model{
         $this->close();
         return $var;
     }
+    public function insert($horraire,$dt,$idens,$idsalle){
+        
+        try {
+            $conn = $this->getbdd();
+            $stmt = $conn->prepare("INSERT INTO `cours`( `horraire`, `dt`, `idEns`, `idsalle`) VALUES (?,?,?,?)");
+            $stmt->bindParam(1, $horraire, PDO::PARAM_STR);
+            $stmt->bindParam(2, $dt, PDO::PARAM_STR);
+            $stmt->bindParam(3, $idens, PDO::PARAM_INT);
+            $stmt->bindParam(4, $idsalle, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->close();
+        } catch (PDOException $e) {
+            echo "message :" . $e->getMessage();
+            die();
+        }
+    }
 
 }

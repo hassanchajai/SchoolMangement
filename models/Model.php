@@ -35,6 +35,7 @@ abstract class Model
             $var[] = new $obj($row);
         }
         $req->closeCursor();
+        $this->close();
         return $var;
     }
     

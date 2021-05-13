@@ -5,36 +5,27 @@
 </div>
 <div class="card w-100">
   <div class="card-body ">
-  <form class="d-flex justify-content-between">
+    <form class="d-flex justify-content-between">
+      <select class="form-control" id="salle" name="idsalle">
+        <option value="0" disabled selected>
+          Choose Salle
+        </option>
+        <?php foreach ($salles as $key => $salle) : ?>
+          <option value="<?= $salle->getId() ?>"><?= $salle->getLibelle() ?></option>
+        <?php endforeach; ?>
+      </select>
+      <input type="date" name="date" id="date" disabled class="form-control">
 
-    <input type="date" name="date" id="" class="form-control">
-    <select class="form-control" disabled name="idsalle">
-    <option value="0" disabled selected> 
-    Choose Salle
-    </option>
-      <option value="1">Salle 1</option>
-    </select>
-    <select name="dt" disabled class="form-control mr-2">
-    <option value="0" disabled selected> 
-    Choose date
-    </option>
-      <option value="8-10">
-        8-10
-      </option>
-      <option value="10-12">
-        10-12
-      </option>
-      <option value="2-4">
-        2-4
-      </option>
-      <option value="4-6">
-        4-6
-      </option>
-    </select>
-  
-    <button type="submit" class="btn btn-info" disabled>
-      Submit
-    </button>
+      <select name="dt" disabled id="horraire" class="form-control mr-2">
+        <option value="0" disabled selected>
+          Choose date
+        </option>
+
+      </select>
+
+      <button type="Button" class="btn btn-info" id="reserve" disabled>
+        Submit
+      </button>
     </form>
   </div>
 </div>
@@ -46,15 +37,10 @@
         <th scope="col">Date</th>
         <th scope="col">hour</th>
         <th scope="col">Salle</th>
-        
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-
-
-
-
     </tbody>
   </table>
 </div>
@@ -62,5 +48,86 @@
 
 <!-- modal -->
 <script>
+  // get value of input
+  const datecours = document.querySelector("#date");
+  const idsalle = document.querySelector("#salle");
+  const horraire = document.querySelector("#horraire");
+  const btn = document.querySelector("#reserve");
+  const idens = <?= $idens ?>;
+  const initialize = () => {
 
+  }
+
+
+
+  idsalle.addEventListener("input", () => {
+    if (idsalle.value !== 0) {
+      datecours.removeAttribute("disabled");
+    }
+  });
+
+  // trigger a event when change in datetime fill the inputs
+  datecours.addEventListener("change", e => {
+    e.preventDefault();
+    let date = datecours.value;
+    let horraries = [];
+    // prepare form data
+    let body = JSON.stringify({
+      dt: date,
+      idSalle: idsalle.value
+    });
+    // send request
+    fetch('/schoolmanagement/cours&status=dates', {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(res => {
+        // get horraires
+        horraries = res.data;
+        horraire.innerHTML = `
+        <option value="0" disabled selected>
+          Choose date
+        </option>
+        `;
+        horraries.map(item => {
+          horraire.innerHTML += `
+          <option value="${item}" >
+          ${item}
+        </option>
+          `;
+        })
+      })
+      .catch(err => console.error(err));
+    horraire.removeAttribute("disabled");
+  });
+  horraire.addEventListener("input", () => {
+    btn.removeAttribute("disabled");
+  });
+  btn.addEventListener("click", () => {
+
+    let date = datecours.value;
+    let horraries = [];
+    // prepare form data
+    let body = JSON.stringify({
+      dt: date,
+      idSalle: idsalle.value,
+      idens,
+      hor: horraire.value
+    });
+    // send request
+    fetch('/schoolmanagement/cours&status=store', {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(res => console.log(res));
+  });
+  // send request to add cours
 </script>

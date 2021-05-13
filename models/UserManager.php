@@ -52,9 +52,11 @@ class UserManager extends Model
         $user = $uidExist->fetch(PDO::FETCH_ASSOC);
         $pwdHashed = $user["pwd"];
         if ($pwd === $pwdHashed) {
-            session_start();
+            
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["user_name"] = $user["uid"];
+            $_SESSION["role"]=$user["role"];
+         
             return true;
         } else {
             return false;
