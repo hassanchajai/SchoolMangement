@@ -55,12 +55,12 @@
   const btn = document.querySelector("#reserve");
   const idens = <?= $idens ?>;
   const initialize = () => {
-
+    document.querySelector("form").initialize();
   }
 
 
 
-  idsalle.addEventListener("input", () => {
+  idsalle.addEventListener("change", () => {
     if (idsalle.value !== 0) {
       datecours.removeAttribute("disabled");
     }
@@ -110,7 +110,6 @@
   btn.addEventListener("click", () => {
 
     let date = datecours.value;
-    let horraries = [];
     // prepare form data
     let body = JSON.stringify({
       dt: date,
@@ -127,7 +126,13 @@
         }
       })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => {
+        // datecours[0].setAttribute("selected");
+        datecours.setAttribute("disabled","");
+        horraire.setAttribute("disabled","");
+        btn.setAttribute("disabled","");
+        console.log(res);
+      });
   });
   // send request to add cours
 </script>
