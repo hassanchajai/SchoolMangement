@@ -39,5 +39,17 @@ class CoursManager extends Model{
             die();
         }
     }
+    public function delete($id){
+        try {
+            $conn = $this->getbdd();
+            $stmt = $conn->prepare("DELETE FROM `cours` WHERE id=?");
+            $stmt->bindParam(1, $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->close();
+        } catch (PDOException $e) {
+            echo "message :" . $e->getMessage();
+            die();
+        }
+    }
 
 }

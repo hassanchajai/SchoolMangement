@@ -29,6 +29,7 @@
 				<ul class="sidebar-nav">
 				
 
+					<?php if($_SESSION["role"] == "admin"): ?>
 					<li class="sidebar-item <?php echo $_GET["url"]=="dashboard" ? "active" :"" ?>">
 						<a class="sidebar-link" href="dashboard">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
@@ -50,12 +51,13 @@
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Ens</span>
 						</a>
 					</li>
+					<?php else: ?>
 					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="cours" ? "active" :"" ?>">
 						<a class="sidebar-link" href="cours">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Cours</span>
 						</a>
 					</li>
-
+					<?php endif; ?>
 
 
 				</ul>

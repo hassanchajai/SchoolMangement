@@ -15,8 +15,13 @@ class ControllerAccueil
     }
     public function index()
     {
-        
-        $this->view = new View("Dashboard");
-        $this->view->generate([]);
+        if( $_SESSION["role"] == "admin"){
+            $this->view = new View("Dashboard");
+            $this->view->generate([]);
+        }
+        else{
+            header("location: cours");
+        }
+  
     }
 }

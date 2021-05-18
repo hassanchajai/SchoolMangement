@@ -33,7 +33,12 @@ class Cour{
             return $this->horraire=$value;
         }
     }
-    public function setIdSalle($value){
+    public function setDt($value){
+        if(!empty($value)){
+            return $this->dt=$value;
+        }
+    }
+    public function setIdsalle($value){
         if(!empty($value)){
             return $this->idSalle=$value;
         }
@@ -44,6 +49,21 @@ class Cour{
         }
     }
 
+    public function getHorraire(){
+        return $this->horraire;
+    }
+    public function getIdSalle(){
+        return $this->idSalle;
+    }
+    public function getDt(){
+        return $this->dt;
+    }
+    public function getId(){
+        return $this->id;
+    }
+    public function getIdEns(){
+        return $this->idEns;
+    }
 
 
 }

@@ -40,7 +40,8 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="body">
+
     </tbody>
   </table>
 </div>
@@ -53,13 +54,52 @@
   const idsalle = document.querySelector("#salle");
   const horraire = document.querySelector("#horraire");
   const btn = document.querySelector("#reserve");
+  const bodytable = document.querySelector("tbody");
+
   const idens = <?= $idens ?>;
   const initialize = () => {
     document.querySelector("form").initialize();
-  }
+  };
+  const fetchAllCours = async () => {
 
+    let body = JSON.stringify({
+      idens
+    });
+    let template = ``;
+    await fetch('/schoolmanagement/cours&status=cours', {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(res => {
 
-
+        template = ``;
+        res.cours.map(cour => {
+          template += `
+          <tr>
+          <td> 
+          ${cour.date}
+          </td>
+          <td> 
+       <span class="badge bg-secondary">   ${cour.hor}</span>
+          </td>
+          <td> 
+          ${cour.Salle}
+          </td>
+          <td> 
+            <a class="btn btn-danger" href="cours&status=delete&id=${cour.id}">Delete </a>
+          </td>
+          
+          </tr>
+          `;
+        });
+      });
+    bodytable.innerHTML = template;
+  };
+  fetchAllCours();
   idsalle.addEventListener("change", () => {
     if (idsalle.value !== 0) {
       datecours.removeAttribute("disabled");
@@ -128,11 +168,11 @@
       .then(res => res.json())
       .then(res => {
         // datecours[0].setAttribute("selected");
-        datecours.setAttribute("disabled","");
-        horraire.setAttribute("disabled","");
-        btn.setAttribute("disabled","");
-        console.log(res);
+        datecours.setAttribute("disabled", "");
+        horraire.setAttribute("disabled", "");
+        btn.setAttribute("disabled", "");
+        fetchAllCours();
       });
   });
-  // send request to add cours
+  // end of  send request to add cours
 </script>
