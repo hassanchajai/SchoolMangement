@@ -1,122 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+	<title>HsnDev</title>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="School Management">
-	<meta name="keywords" content="School Management">
 
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
-	<link rel="shortcut icon" href="public/img/icons/icon-48x48.png" />
-
-	<title>HassanDev</title>
-
-	<link href="public/css/app.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
-					<span class="align-middle">School Management</span>
-				</a>
 
-				<ul class="sidebar-nav">
-				
+	<div class="wrapper d-flex align-items-stretch">
+		<nav id="sidebar">
+			<div class="p-4 pt-5">
+				<a href="dashboard" class="img logo rounded-circle mb-5" style="background-image: url(public/images/logo.webp);"></a>
+				<ul class="list-unstyled  mb-5">
+					<?php if ($_SESSION["role"] == "admin") : ?>
+						<li class=" <?php echo $_GET["url"] == "dashboard" ? "active" : "" ?>">
+							<a class="" href="dashboard">
+								<i class="" data-feather="sliders"></i> <span class="">Dashboard</span>
+							</a>
+						</li>
+						<li class=" <?php echo strtolower($_GET["url"]) == "salle" ? "active" : "" ?>">
+							<a class="" href="Salle">
+								<i class="" ></i> <span class="">Salle</span>
+							</a>
+						</li>
 
-					<?php if($_SESSION["role"] == "admin"): ?>
-					<li class="sidebar-item <?php echo $_GET["url"]=="dashboard" ? "active" :"" ?>">
-						<a class="sidebar-link" href="dashboard">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-						</a>
-					</li>
-					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="salle" ? "active" :"" ?>">
-						<a class="sidebar-link" href="Salle">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Salle</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="group" ? "active" :"" ?>">
-						<a class="sidebar-link" href="group">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Group</span>
-						</a>
-					</li>
-					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="ens" ? "active" :"" ?>">
-						<a class="sidebar-link" href="ens">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Ens</span>
-						</a>
-					</li>
-					<?php else: ?>
-					<li class="sidebar-item <?php echo strtolower($_GET["url"])=="cours" ? "active" :"" ?>">
-						<a class="sidebar-link" href="cours">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Cours</span>
-						</a>
-					</li>
+						<li class=" <?php echo strtolower($_GET["url"]) == "group" ? "active" : "" ?>">
+							<a class="" href="group">
+								<i class="" ></i> <span class="">Group</span>
+							</a>
+						</li>
+						<li class=" <?php echo strtolower($_GET["url"]) == "ens" ? "active" : "" ?>">
+							<a class="" href="ens">
+								<i class="" ></i> <span class="">Ens</span>
+							</a>
+						</li>
+					<?php else : ?>
+						<li class=" <?php echo strtolower($_GET["url"]) == "cours" ? "active" : "" ?>">
+							<a class="" href="cours">
+								<i class="" ></i> <span class="">Cours</span>
+							</a>
+						</li>
 					<?php endif; ?>
-
 
 				</ul>
 
+				<div class="footer">
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;<script>
+							document.write(new Date().getFullYear());
+						</script> All rights reserved
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
 
 			</div>
 		</nav>
 
-		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle d-flex">
-					<i class="hamburger align-self-center"></i>
-				</a>
+		<!-- Page Content  -->
+		<div id="content" class="p-4 p-md-5">
+
+			<nav class="card mb-4">
+				<div class="card-body d-flex justify-content-between p-3">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary ">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle Menu</span>
+					</button>
 
 
 
-				<div class="navbar-collapse collapse">
-					<ul class="navbar-nav navbar-align">
 
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-								<i class="align-middle" data-feather="settings"></i>
-							</a>
-
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-								<span class="text-dark"><?= $_SESSION["user_name"] ?></span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-
-								<a class="dropdown-item" href="authentification&status=signout">Log out</a>
-							</div>
-						</li>
-					</ul>
-				</div>
 			</nav>
 
-			<div class="content">
+			<div class="container-fluid">
 				<?= $content ?>
 			</div>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a href="index.html" class="text-muted"><strong>Hassan Dashboard</strong></a> &copy;
-							</p>
-						</div>
-
-					</div>
-				</div>
-			</footer>
 		</div>
-	</div>
 
-	<script src="public/js/app.js"></script>
-
-
-
+		<script src="public/js/jquery.min.js"></script>
+		<script src="public/js/popper.js"></script>
+		<script src="public/js/bootstrap.min.js"></script>
+		<script src="public/js/main.js"></script>
 </body>
 
 </html>

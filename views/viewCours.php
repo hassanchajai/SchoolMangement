@@ -84,7 +84,7 @@
           ${cour.date}
           </td>
           <td> 
-       <span class="badge bg-secondary">   ${cour.hor}</span>
+       <span class="badge bg-secondary text-light p-2">   ${cour.hor}</span>
           </td>
           <td> 
           ${cour.Salle}

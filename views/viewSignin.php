@@ -14,7 +14,7 @@
 
 	<title>Sign In </title>
 
-	<link href="public/css/app.css" rel="stylesheet">
+	<link rel="stylesheet" href="public/css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
